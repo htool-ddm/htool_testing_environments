@@ -101,7 +101,7 @@ FROM ubuntu_base AS ubuntu_gcc_mpich
 # See installation guide of target MPICH version
 # Ex: http://www.mpich.org/static/downloads/3.4/mpich-3.4-installguide.pdf
 # These options are passed to the steps below
-ARG MPICH_VERSION="4.2.2"
+ARG MPICH_VERSION="4.3.0"
 ARG MPICH_CONFIGURE_OPTIONS="FFLAGS=-fallow-argument-mismatch FCFLAGS=-fallow-argument-mismatch  --enable-shared"
 ARG MPICH_MAKE_OPTIONS="-j4"
 
@@ -131,7 +131,7 @@ FROM ubuntu_base AS ubuntu_clang_mpich
 # See installation guide of target MPICH version
 # Ex: http://www.mpich.org/static/downloads/3.4/mpich-3.4-installguide.pdf
 # These options are passed to the steps below
-ARG MPICH_VERSION="4.2.2"
+ARG MPICH_VERSION="4.3.0"
 ARG MPICH_CONFIGURE_OPTIONS="FFLAGS=-fallow-argument-mismatch FCFLAGS=-fallow-argument-mismatch --enable-shared"
 ARG MPICH_MAKE_OPTIONS="-j4"
 
