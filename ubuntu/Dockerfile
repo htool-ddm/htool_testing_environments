@@ -24,6 +24,7 @@ RUN apt-get update \
     libomp-dev \
     doxygen\
     python3-pip python3-dev python3-venv \
+    && apt-get clean \
     && python3.12 -m venv /usr/local/share/venv \
     && . /usr/local/share/venv/bin/activate \
     && python -m pip install --no-cache-dir --upgrade\
@@ -36,7 +37,7 @@ FROM ubuntu_base AS ubuntu_gcc_openmpi
 
 # Build Options:
 # These options are passed to the steps below
-ARG OPENMPI_VERSION="5.0.5"
+ARG OPENMPI_VERSION="5.0.8"
 ARG OPENMPI_MAJOR_VERSION="v5.0"
 ARG OPENMPI_CONFIGURE_OPTIONS=""
 ARG OPENMPI_MAKE_OPTIONS="-j4"
@@ -56,8 +57,8 @@ RUN mkdir /tmp/openmpi-src \
 
 #### ADD DEFAULT USER ####
 ARG USER=mpi
-ENV USER ${USER}
-ENV USER_HOME /home/${USER}
+ENV USER=${USER}
+ENV USER_HOME=/home/${USER}
 RUN useradd -s /bin/bash --user-group --system --create-home --no-log-init ${USER}
 
 USER ${USER}
@@ -67,7 +68,7 @@ FROM ubuntu_base AS ubuntu_clang_openmpi
 
 # Build Options:
 # These options are passed to the steps below
-ARG OPENMPI_VERSION="5.0.5"
+ARG OPENMPI_VERSION="5.0.8"
 ARG OPENMPI_MAJOR_VERSION="v5.0"
 ARG OPENMPI_CONFIGURE_OPTIONS=""
 ARG OPENMPI_MAKE_OPTIONS="-j4"
@@ -87,8 +88,8 @@ RUN mkdir /tmp/openmpi-src \
 
 #### ADD DEFAULT USER ####
 ARG USER=mpi
-ENV USER ${USER}
-ENV USER_HOME /home/${USER}
+ENV USER=${USER}
+ENV USER_HOME=/home/${USER}
 RUN useradd -s /bin/bash --user-group --system --create-home --no-log-init ${USER}
 
 USER ${USER}
@@ -101,7 +102,7 @@ FROM ubuntu_base AS ubuntu_gcc_mpich
 # See installation guide of target MPICH version
 # Ex: http://www.mpich.org/static/downloads/3.4/mpich-3.4-installguide.pdf
 # These options are passed to the steps below
-ARG MPICH_VERSION="4.3.0"
+ARG MPICH_VERSION="4.3.1"
 ARG MPICH_CONFIGURE_OPTIONS="FFLAGS=-fallow-argument-mismatch FCFLAGS=-fallow-argument-mismatch  --enable-shared"
 ARG MPICH_MAKE_OPTIONS="-j4"
 
@@ -119,8 +120,8 @@ RUN mkdir /tmp/mpich-src && cd /tmp/mpich-src \
 
 #### ADD DEFAULT USER ####
 ARG USER=mpi
-ENV USER ${USER}
-ENV USER_HOME /home/${USER}
+ENV USER=${USER}
+ENV USER_HOME=/home/${USER}
 RUN useradd -s /bin/bash --user-group --system --create-home --no-log-init ${USER}
 
 USER ${USER}
@@ -131,7 +132,7 @@ FROM ubuntu_base AS ubuntu_clang_mpich
 # See installation guide of target MPICH version
 # Ex: http://www.mpich.org/static/downloads/3.4/mpich-3.4-installguide.pdf
 # These options are passed to the steps below
-ARG MPICH_VERSION="4.3.0"
+ARG MPICH_VERSION="4.3.1"
 ARG MPICH_CONFIGURE_OPTIONS="FFLAGS=-fallow-argument-mismatch FCFLAGS=-fallow-argument-mismatch --enable-shared"
 ARG MPICH_MAKE_OPTIONS="-j4"
 
@@ -149,8 +150,8 @@ RUN mkdir /tmp/mpich-src && cd /tmp/mpich-src \
 
 #### ADD DEFAULT USER ####
 ARG USER=mpi
-ENV USER ${USER}
-ENV USER_HOME /home/${USER}
+ENV USER=${USER}
+ENV USER_HOME=/home/${USER}
 RUN useradd -s /bin/bash --user-group --system --create-home --no-log-init ${USER}
 
 USER ${USER}
