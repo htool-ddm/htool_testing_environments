@@ -1,4 +1,4 @@
-FROM ubuntu:noble-20240605 AS ubuntu_base
+FROM ubuntu:noble-20260113 AS ubuntu_base
 
 WORKDIR /root
 

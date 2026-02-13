@@ -1,4 +1,4 @@
-FROM debian:bookworm-20240722-slim AS debian_base
+FROM debian:bookworm-20260202-slim AS debian_base
 
 WORKDIR /root
 
